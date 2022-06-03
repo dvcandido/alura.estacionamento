@@ -1,13 +1,13 @@
 using Alura.Estacionamento.Alura.Estacionamento.Modelos;
 using Alura.Estacionamento.Modelos;
-using System;
 using Xunit;
 
 namespace Alura.Estacionamento.Testes
 {
     public class VeiculoTestes
     {
-        [Fact]
+        [Fact(DisplayName = "Teste nº 1")]
+        [Trait("Funcionalidade", "Acelerar")]
         public void TestaVeiculoAcelerar()
         {
             //Arrange
@@ -19,7 +19,8 @@ namespace Alura.Estacionamento.Testes
 
         }
 
-        [Fact]
+        [Fact(DisplayName = "Teste nº 2")]
+        [Trait("Funcionalidade", "Frear")]
         public void TestaVeiculoFrear()
         {
             //Arrange
@@ -41,5 +42,28 @@ namespace Alura.Estacionamento.Testes
             Assert.Equal(TipoVeiculo.Automovel, veiculo.Tipo);
 
         }
+
+        [Fact(Skip = "Teste ainda não implementado. Ignorar")]
+        public void ValidaNomeProprietario()
+        {
+
+        }
+
+        [Theory]
+        [ClassData(typeof(Veiculo))]
+        public void TestaVeiculoClassData(Veiculo modelo)
+        {
+            //Arrange
+            var veiculo = new Veiculo();
+
+            //Act
+            veiculo.Acelerar(10);
+            modelo.Acelerar(10);
+
+            //Assert
+            Assert.Equal(modelo.VelocidadeAtual, veiculo.VelocidadeAtual);
+
+        }
+
     }
 }
