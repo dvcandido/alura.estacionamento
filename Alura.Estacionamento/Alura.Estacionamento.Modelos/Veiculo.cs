@@ -121,6 +121,24 @@ namespace Alura.Estacionamento.Modelos
             };
         }
 
+        internal void AlterarDados(Veiculo veiculoAlterado)
+        {
+            Proprietario = veiculoAlterado.Proprietario;
+            Modelo = veiculoAlterado.Modelo;
+            Largura = veiculoAlterado.Largura;
+            Cor = veiculoAlterado.Cor;
+        }
+
+        public override string ToString()
+        {
+            return $"Ficha do Veículo:\n" +
+                   $"Tipo do Veículo: {Tipo}\n " +
+                   $"Proprietário: {Proprietario}\n" +
+                   $"Modelo: {Modelo}\n" +
+                   $"Cor: {Cor}\n" +
+                   $"Placa: {Placa}\n";
+        }
+
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
       
     }
