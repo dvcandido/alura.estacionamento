@@ -72,7 +72,7 @@ namespace Alura.Estacionamento.Testes
         [InlineData("João das Neves", "MUR-0666", "Preto", "Gol")]
         [InlineData("Brunce Wayne", "BAT-3567", "Preto", "Lincoln")]
         [InlineData("Arthur Dent", "SAP-2642", "Branca", "coração de Ouro")]
-        public void LocalizaVeiculoNoPatioComBaseNaPlaca(string proprietario, string placa, string cor, string modelo)
+        public void LocalizaVeiculoNoPatioComBaseNaNoIdTicket(string proprietario, string placa, string cor, string modelo)
         {
             //Arrange
             var estacionamento = new Patio();
@@ -85,10 +85,10 @@ namespace Alura.Estacionamento.Testes
             estacionamento.RegistrarEntradaVeiculo(_veiculo);
 
             //Act
-            var consultado = estacionamento.PesquisaVeiculo(placa);
+            var consultado = estacionamento.PesquisaVeiculo(_veiculo.IdTicket);
 
             //Assert
-            Assert.Equal(placa, consultado.Placa);
+            Assert.Contains("### Ticket Estacionamento Alura ###", _veiculo.Ticket);
 
         }
 
@@ -112,7 +112,9 @@ namespace Alura.Estacionamento.Testes
                 Tipo = TipoVeiculo.Automovel,
                 Cor = "Preto",
                 Modelo = "Fusca",
-                Placa = "FCQ-0000"
+                Placa = "FCQ-0000",
+                IdTicket = _veiculo.IdTicket,
+                Ticket = _veiculo.Ticket
             };
 
             //Act
